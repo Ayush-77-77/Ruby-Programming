@@ -5,6 +5,7 @@
 
 def sub_string(string, dictonary)
   hash=Hash.new(0)
+    
   dictonary.each do |word|
       
       if string.include?word
