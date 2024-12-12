@@ -9,13 +9,11 @@ def caesar_cipher(string, shift)
         ascii_value =  smallChar(ch, shift)
         # new_str += ascii_value.chr
         print ascii_value.chr
-
-
-     elsif ch>='A'&&ch<='Z'
+  elsif ch>='A'&&ch<='Z'
       ascii_value =  largeChar(ch, shift)
     #   new_str += ascii_value.chr
       print ascii_value.chr
-     else
+   else
       # new_str += ch
       print ch
    end
@@ -23,23 +21,46 @@ def caesar_cipher(string, shift)
 
 end
 
-def smallChar(ch, shift)
-  ascii_value = (ch.ord + shift)
-  if (ascii_value > 122 )
-    return 96 + (ascii_value % 122)
+
+# Right Shift 
+
+# def smallChar(ch, shift)
+#   ascii_value = (ch.ord + shift)
+#   if (ascii_value > 122 )
+#     return 96 + (ascii_value % 122)
+#   else
+#     return (ascii_value % 123)
+#   end
+# end
+
+# def largeChar(ch, shift)
+#   ascii_value = (ch.ord + shift)
+#   if (ascii_value > 90)
+#     return 64 + (ascii_value % 90)
+#   else
+#     return (ascii_value % 91)
+#   end
+# end
+
+# left shift 
+
+ def smallChar(ch, shift)
+  ascii_value = (ch.ord - shift)
+  if (ascii_value < 97 )
+    return ((ascii_value % 97) + 26)
   else
     return (ascii_value % 123)
   end
 end
 
 def largeChar(ch, shift)
-  ascii_value = (ch.ord + shift)
-  if (ascii_value > 90)
-    return 64 + (ascii_value % 90)
+  ascii_value = (ch.ord - shift)
+  if (ascii_value < 65)
+    return ((ascii_value % 65) + 26)
   else
     return (ascii_value % 91)
   end
 end
 
 
-caesar_cipher("What a string!", 5)
+caesar_cipher("Bmfy f xywnsl!", 5)
