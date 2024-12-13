@@ -1,2 +1,2 @@
 
-      else
+  while(i<=high)
