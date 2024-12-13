@@ -65,7 +65,7 @@ class MergeSort
        temp_array.push(array[right])
        right+=1
      end
-   end                                    # end of merge method
+   end                                    
    
    while(left<=middle)
      temp_array.push(array[left])
