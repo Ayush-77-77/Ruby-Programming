@@ -1,37 +1,42 @@
 class MergeSort
   @array=Array.new
+
   def initialize(size)
     @array = Array.new(size)
   end
 
   def setArray()
- 
     i=0
     while (i < @array.length)  do     # input the values inside array
       print "Enter the value of array[#{i}] : "
       inputValue = gets
+      begin
+       @array[i]= Integer(inputValue)
+       i+=1  
+      rescue StandardError
+       puts "Invalid Input!! please enter the value as an integer again :"
+      end
+      # unless (isValidInput(inputValue, i))
+      #   puts "Invalid Input!! please enter the value as an integer again :"
+      #   i=i-1;
 
-      unless (isValidInput(inputValue, i))
-        puts "Invalid Input!! please enter the value as an integer again :"
-        i=i-1;
-
-      else
-        @array[i] = inputValue.to_i
-      end                                   
-      i+=1
-    end                             # End of loop      
+      # else
+      #   @array[i] = inputValue.to_i
+      # end                                   
+      # i+=1
+    end                        # End of loop      
+    mergeSort(@array, 0, @array.length-1)    # calling mergeSort to make a recursive call
    
-    mergeSort(@array, 0, @array.length-1)
   end                               # end of setArray method
 
-  def isValidInput(inputValue, i)
-    if(inputValue.to_i==0)
-      return false
-    else
-      return true
-    end
+  # def isValidInput(inputValue, i)
+  #   if(inputValue.to_i==0)
+  #     return false
+  #   else
+  #     return true
+  #   end
 
-  end                                  # end of Isvalid Input method
+  # end                                  # end of Isvalid Input method
 
 
 
@@ -60,7 +65,7 @@ class MergeSort
        temp_array.push(array[right])
        right+=1
      end
-   end
+   end                                    # end of merge method
    
    while(left<=middle)
      temp_array.push(array[left])
