@@ -18,6 +18,33 @@ class QuickSort
     end                        # End of loop      
     # quickSort(@array, 0, @array.length-1)    # calling quickSort to make a recursive call
   end                                       # end of setArray Method
+  def quickSort(array, low, high)
+    if(low < high)
+      partition=arrayPartition(array, low, high)
+      quickSort(array,low, partition-1)
+      quickSort(array, partition+1, high)
+    end
+  end                                        # end of quickSort method
+
+  # finding the partition of the array that will arrange the smaller value at the left side and larger value at the right side
+  def arrayPartition(array, low, high)       
+    pivot = array[low]
+    i =low 
+    j=high
+    while (i<j)
+      i+=1 while (array[i]<=pivot && i <= high-1)
+      j-=1 while(array[j]>pivot && j >= low + 1)
+      if(i<j)
+          swap(array, i, j)    # swapping the values 
+      end
+    end
+    swap(array, low, j) 
+    return j
+  end                            # end of arrayPartition
+  
+  def swap(array, i, j)                         # swap method
+     array[i],array[j]=array[j],array[i]
+  end
 
   
   def getArray()                             
