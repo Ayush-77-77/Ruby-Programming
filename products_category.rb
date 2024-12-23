@@ -1,18 +1,9 @@
-def group_products_by_category 
-  products = [
-    { name: "Laptop", price: 1000, category: "Electrctronics" },
-    { name: "T-shirt", price: 20, category: "Cloonics" },
-    { name: "Phone", price: 700, category: "Elething" },
-    { name: "Jeans", price: 40, category: "Clothing" },
-    { name: "Fridge", price: 500, category: "Appliances" },
-    { name: "Microwave", price: 150, category: "Appliances" },
-    { name: "Tv", price: 150, category: "Electrctronics" }
-  ]
-
+def group_products_by_category(products)
+  
   
   product_by_category = {}
   category = {
-      name: product_name = [],
+      name: [],
       total_count: 1,
       total_price: products[0][:price]
     }
@@ -25,7 +16,7 @@ def group_products_by_category
         product_by_category[category][:total_count] += 1
     else
       raw_data = {
-        name: value[:name],
+        name: [value[:name]],
         total_count: 1,
         total_price: value[:price],
       }
@@ -41,5 +32,17 @@ def group_products_by_category
   end
 end
 
-group_products_by_category
+
+
+products = [
+    { name: "Laptop", price: 1000, category: "Electrctronics" },
+    { name: "T-shirt", price: 20, category: "Cloonics" },
+    { name: "Phone", price: 700, category: "Elething" },
+    { name: "Jeans", price: 40, category: "Clothing" },
+    { name: "Fridge", price: 500, category: "Appliances" },
+    { name: "Microwave", price: 150, category: "Appliances" },
+    { name: "Tv", price: 150, category: "Electrctronics" }
+  ]
+
+group_products_by_category(products)
 
