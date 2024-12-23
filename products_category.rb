@@ -1,3 +1,4 @@
+
 def group_products_by_category(products)
   
   
@@ -35,6 +36,7 @@ end
 
 
 products = [
+    { name: "Laptop", price: 1000, category: "Electrctronics" },
     { name: "Laptop", price: 1000, category: "Electrctronics" },
     { name: "T-shirt", price: 20, category: "Cloonics" },
     { name: "Phone", price: 700, category: "Elething" },
