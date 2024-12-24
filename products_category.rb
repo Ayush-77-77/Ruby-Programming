@@ -11,18 +11,15 @@ class ProductCategory
         product_categories[category][:name] << product[:name]
         product_categories[category][:total_price] += product[:price]
         product_categories[category][:total_count] += 1
-      end
-      product_categories
+    end
+    product_categories
   end
 
   def product_by_category(category)
     product_names = []
     @products.each do |product|
-        if product[:category] == category
-          product_names.push(product[:name])
-        end
+      product_names.push(product[:name]) if product[:category] == category
     end
-   
     product_names
   end
 end
