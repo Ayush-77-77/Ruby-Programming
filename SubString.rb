@@ -8,13 +8,12 @@ def sub_string(string, dictonary)
     
   dictonary.each do |word|
       
-      if string.include?word
-      hash[word] = 1
-          
+    if string.include?word
+      hash[word] = 1 
     end
       
-    end  
-    puts hash
+  end  
+  puts hash
 end
 dictionary = ["below","down","go","going","horn","how","howdy","it","l","low","own","part","partner","sit","below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 sub_string("below", dictionary)
