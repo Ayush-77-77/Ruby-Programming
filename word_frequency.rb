@@ -3,12 +3,11 @@
 # 2. Return a hash where keys are the words, and values are their respective frequencies.
 
 
-
 sentences = ["Hello world", "hello Ruby", "Ruby is awesome",  "World is big"]
 new_sentences = sentences.join(' ')
 
 new_sentences = new_sentences.split(' ')
-hash = Hash.new(0)
+hash = {}
 
 new_sentences.each do |string|
   string.downcase!

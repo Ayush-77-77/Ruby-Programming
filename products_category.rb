@@ -3,11 +3,7 @@ def group_products_by_category(products)
   
   
   product_by_category = {}
-  category = {
-      name: [],
-      total_count: 1,
-      total_price: products[0][:price]
-    }
+
   products.each do |value|
     category = value[:category]
     
@@ -21,7 +17,6 @@ def group_products_by_category(products)
         total_count: 1,
         total_price: value[:price],
       }
-
     product_by_category[category] = raw_data
     end
   end 
