@@ -1,45 +1,47 @@
-def group_products_by_category 
-  products = [
-    { name: "Laptop", price: 1000, category: "Electrctronics" },
-    { name: "T-shirt", price: 20, category: "Cloonics" },
-    { name: "Phone", price: 700, category: "Elething" },
-    { name: "Jeans", price: 40, category: "Clothing" },
-    { name: "Fridge", price: 500, category: "Appliances" },
-    { name: "Microwave", price: 150, category: "Appliances" },
-    { name: "Tv", price: 150, category: "Electrctronics" }
-  ]
+class ProductCategory
+  def initialize(products)
+    @products = products
+  end  
 
-  
-  product_by_category = {}
-  category = {
-      name: product_name = [],
-      total_count: 1,
-      total_price: products[0][:price]
-    }
-  products.each do |value|
-    category = value[:category]
-    
-    if product_by_category.key?category
-        product_by_category[category][:name] << value[:name]
-        product_by_category[category][:total_price] += value[:price]
-        product_by_category[category][:total_count] += 1
-    else
-      raw_data = {
-        name: value[:name],
-        total_count: 1,
-        total_price: value[:price],
-      }
+  def group_products_by_category
+    product_categories = {}
+    @products.each do |product|
+      category = product[:category]
+        product_categories[category] ||= { name: [], total_count: 0,total_price: 0.0 }
+        product_categories[category][:name] << product[:name]
+        product_categories[category][:total_price] += product[:price]
+        product_categories[category][:total_count] += 1
+      end
+      product_categories
+  end
 
-    product_by_category[category] = raw_data
+  def product_by_category(category)
+    product_names = []
+    @products.each do |product|
+        if product[:category] == category
+          product_names.push(product[:name])
+        end
     end
-  end 
-  
-
-  product_by_category.each do |category|
-    puts category
-    puts 
+   
+    product_names
   end
 end
 
-group_products_by_category
 
+
+
+products = [
+  { name: "Laptop", price: 1000, category: "Electrctronics" },
+  { name: "T-shirt", price: 20, category: "Cloonics" },
+  { name: "Phone", price: 700, category: "Elething" },
+  { name: "Jeans", price: 40, category: "Clothing" },
+  { name: "Fridge", price: 500, category: "Appliances" },
+  { name: "Microwave", price: 150, category: "Appliances" },
+  { name: "Tv", price: 150, category: "Electrctronics" }
+]
+
+
+products_categories = ProductCategory.new(products)
+puts products_categories.group_products_by_category
+puts "-"*40
+p products_categories.product_by_category("Appliances")

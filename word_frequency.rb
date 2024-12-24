@@ -5,17 +5,15 @@
 
 class WordFrequencyCounter
   def initialize(sentences)
-    @sentences = sentences
+    @sentences = sentences.join(' ').downcase.split(' ')
   end
-  def words_frequency_count()
-    words = @sentences.join(' ').downcase.split(' ')
+  def words_frequency_count
     hash = Hash.new(0)
-    words.each {|word| hash[word] += 1}
+    @sentences.each {|word| hash[word] += 1}
     hash  # return value
   end
   def word_count(word)
-    words = @sentences.join(' ').downcase.split(' ')
-    words.count(word)    # return value
+    @sentences.count(word)    # return value
   end
 
 end
@@ -26,5 +24,6 @@ sentences = ["Hello world", "hello Ruby", "Ruby is awesome",  "World is big"]
 frequency_counter = WordFrequencyCounter.new(sentences)   # creating a object
 print "Enter the word : "
 word = gets.chomp
+puts frequency_counter.words_frequency_count
 puts "#{word} : #{frequency_counter.word_count(word)}"
 
