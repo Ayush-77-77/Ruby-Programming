@@ -1,5 +1,4 @@
 module ProductCategoryModule
-   # Method to group products by category with aggregate data (name, total_count, total_price)
    def group_products_by_category
     category_summary = {}
     
@@ -24,9 +23,6 @@ class ProductCategory
     @products = products
     @category_summary = group_products_by_category
   end  
-
-  
-
   # Method to get all products by a specific category (names of products)
   def products_by_category(category)
     @category_summary[category] ? @category_summary[category][:names] : []
