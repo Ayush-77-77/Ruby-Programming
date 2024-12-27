@@ -2,28 +2,40 @@
 # 1. Count the frequency of each word across all the sentences (case-insensitive).
 # 2. Return a hash where keys are the words, and values are their respective frequencies.
 
-
 class WordFrequencyCounter
   def initialize(sentences)
-    @sentences = sentences.join(' ').downcase.split(' ')
-    @hash = Hash.new(0)
-  end
-  def words_frequency_count
-    @sentences.each {|word| @hash[word] += 1}
-    @hash  # return value
-  end
-  def word_count(word)
-    @hash[word]  # return value
+    @word_frequencies = calculate_word_frequencies(sentences)
   end
 
+  # Method to calculate word frequencies
+  def calculate_word_frequencies(sentences)
+    word_frequencies = Hash.new(0)
+    sentences.join(' ').downcase.split.each do |word|
+      word_frequencies[word] += 1
+    end
+    word_frequencies
+  end
+
+  # Method to get frequency of a specific word
+  def get_word_count(word)
+    @word_frequencies[word.downcase]
+  end
+
+  # Method to return all word frequencies
+  def all_word_frequencies
+    @word_frequencies
+  end
 end
 
 
-sentences = ["Hello world", "hello Ruby", "Ruby is awesome",  "World is big"]
+sentences = ["Hello world", "hello Ruby", "Ruby is awesome", "World is big"]
 
-frequency_counter = WordFrequencyCounter.new(sentences)   # creating a object
-print "Enter the word : "
+frequency_counter = WordFrequencyCounter.new(sentences)
+
+# Input from user
+print "Enter the word: "
 word = gets.chomp
-puts frequency_counter.words_frequency_count
-puts frequency_counter.word_count(word)
 
+
+puts "All word frequencies: #{frequency_counter.all_word_frequencies}"
+puts "Count of '#{word}': #{frequency_counter.get_word_count(word)}"
