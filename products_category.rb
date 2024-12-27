@@ -34,6 +34,7 @@ class ProductCategory
   end
 end
 
+<<<<<<< HEAD
 products = [
   { name: "Laptop", price: 1000, category: "Electronics" },
   { name: "T-shirt", price: 20, category: "Clothing" },
@@ -51,6 +52,22 @@ product_categories = ProductCategory.new(products)
 puts "Category Summary:"
 puts product_categories.full_category_summary
 puts "-" * 40
+=======
+
+
+products = [
+    { name: "Laptop", price: 1000, category: "Electrctronics" },
+    { name: "Laptop", price: 1000, category: "Electrctronics" },
+    { name: "T-shirt", price: 20, category: "Cloonics" },
+    { name: "Phone", price: 700, category: "Elething" },
+    { name: "Jeans", price: 40, category: "Clothing" },
+    { name: "Fridge", price: 500, category: "Appliances" },
+    { name: "Microwave", price: 150, category: "Appliances" },
+    { name: "Tv", price: 150, category: "Electrctronics" }
+  ]
+
+group_products_by_category(products)
+>>>>>>> Training-23-12-2024
 
 # Fetching and displaying product names for a specific category
 puts "Products in 'Appliances' category:"
