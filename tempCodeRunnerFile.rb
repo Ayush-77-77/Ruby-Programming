@@ -1,1 +1,1 @@
-["Hello world", "hello Ruby", "Ruby is awesome",  "World is big"]
+i there, #{name}"
