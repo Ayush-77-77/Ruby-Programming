@@ -1,44 +1,61 @@
-class ProductCategory
-  def initialize(products)
-    @products = products
-  end  
-
-  def group_products_by_category
-    product_categories = {}
+module ProductCategoryModule
+   # Method to group products by category with aggregate data (name, total_count, total_price)
+   def group_products_by_category
+    category_summary = {}
+    
     @products.each do |product|
       category = product[:category]
-        product_categories[category] ||= { name: [], total_count: 0,total_price: 0.0 }
-        product_categories[category][:name] << product[:name]
-        product_categories[category][:total_price] += product[:price]
-        product_categories[category][:total_count] += 1
+      # Initialize the category if not already present
+      category_summary[category] ||= { names: [], total_count: 0, total_price: 0.0 }
+      
+      # inserting product details into the category
+      category_summary[category][:names] << product[:name]
+      category_summary[category][:total_price] += product[:price]
+      category_summary[category][:total_count] += 1
     end
-    product_categories
+
+    category_summary
+   end
+end
+
+class ProductCategory
+  include ProductCategoryModule
+  def initialize(products)
+    @products = products
+    @category_summary = group_products_by_category
+  end  
+
+  
+
+  # Method to get all products by a specific category (names of products)
+  def products_by_category(category)
+    @category_summary[category] ? @category_summary[category][:names] : []
   end
 
-  def product_by_category(category)
-    product_names = []
-    @products.each do |product|
-      product_names.push(product[:name]) if product[:category] == category
-    end
-    product_names
+  # full category summary
+  def full_category_summary
+    @category_summary
   end
 end
 
-
-
-
 products = [
-  { name: "Laptop", price: 1000, category: "Electrctronics" },
-  { name: "T-shirt", price: 20, category: "Cloonics" },
-  { name: "Phone", price: 700, category: "Elething" },
+  { name: "Laptop", price: 1000, category: "Electronics" },
+  { name: "T-shirt", price: 20, category: "Clothing" },
+  { name: "Phone", price: 700, category: "Electronics" },
   { name: "Jeans", price: 40, category: "Clothing" },
   { name: "Fridge", price: 500, category: "Appliances" },
   { name: "Microwave", price: 150, category: "Appliances" },
-  { name: "Tv", price: 150, category: "Electrctronics" }
+  { name: "TV", price: 150, category: "Electronics" }
 ]
 
+# Creating an instance of ProductCategory
+product_categories = ProductCategory.new(products)
 
-products_categories = ProductCategory.new(products)
-puts products_categories.group_products_by_category
-puts "-"*40
-p products_categories.product_by_category("Appliances")
+# Displaying the grouped products by category with aggregate data
+puts "Category Summary:"
+puts product_categories.full_category_summary
+puts "-" * 40
+
+# Fetching and displaying product names for a specific category
+puts "Products in 'Appliances' category:"
+p product_categories.products_by_category("Appliances")
