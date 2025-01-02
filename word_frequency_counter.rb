@@ -13,3 +13,58 @@
 # 3. Return a hash where keys are the words, and values are their respective frequencies.
 # 
 # Method to normalize and split a string into words
+
+
+module WordFrequency
+  def self.extract_words(str)
+    str.downcase.scan(/\b[a-z]+\b/)
+  end
+
+  def self.count_words(data, word_count = Hash.new(0))
+    case data
+    when String
+      extract_words(data).each { |word| word_count[word] += 1 }
+    when Array
+      data.each { |element| count_words(element, word_count) }
+    when Hash
+      data.each do |key, value|
+        # next if key.is_a?(Symbol)
+        count_words(key.to_s, word_count)
+        count_words(value, word_count)
+      end
+    end
+    word_count
+  end
+  def self.word_frequency_counter(input)
+    count_words(input)
+  end
+end
+
+input_1 = "Hello world, welcome to Ruby!"
+input_2 = {
+  "hello world" => "Ruby is fun",
+  details: {
+    description: "Ruby rocks in the programming world",
+    :"extra info" => ["hello again", "world of Ruby"]
+  }
+}
+input_3 = [
+  "Hello world",
+  { 
+    "Ruby language" => "is fun",
+    details: [
+      "Ruby rocks", 
+      { "hello again" => "world is round" }
+    ]
+  },
+  [
+    "Complex structures are interesting",
+    { more_data: ["Hello", "world of Ruby"] }
+  ]
+]
+
+pp WordFrequency.word_frequency_counter(input_1)
+puts
+pp WordFrequency.word_frequency_counter(input_2)
+puts
+pp WordFrequency.word_frequency_counter(input_3)
